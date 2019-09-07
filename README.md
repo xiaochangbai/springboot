@@ -59,7 +59,47 @@
             <li>Java类的方式：类上使用@Configrution注解，方法上使用Bean注解。</li>
         </ul>
     </li>
-    <li></li>
-    <li></li>
-    <li></li>
+    <li>配置文件占位符(${}): 
+        <ul>
+            <li>使用springboot提供的随机数：${random.uuid}..</li>
+            <li>获取之前配置的值，若没有则使用设置的默认值。${属性名:默认值}</li>
+        </ul>
+    </li>
+    <li>profile多环境支持(开发环境，测试环境，运行环境等等)
+        <ul>
+            <li>properties格式文件配置：
+                <ul>
+                    <li>为每个环境创建一个properti格式的文件，
+                        文件命名：application-{profileName}.properties
+                    </li>
+                    <li>切换环境：默认启动的是application.properties配置的环境，
+                        可以通过在application.properties文件中设置
+                        spring.profiles.active=profileName来切换环境
+                    </li>
+                </ul>
+            </li>
+            <li>yml格式文件配置：
+                <ul>
+                    <li>在application.yml文件中使用"---"分隔区分不同的文档，
+                        使用spring:
+                           profiles:profileName来设置当前文档的环境名
+                    </li>
+                    <li>
+                        切换环境：在默认文档部分使用spring:
+                                        profiles:
+                                          active: profileName
+                                          来切换对应的环境
+                    </li>
+                </ul>
+            </li>
+            <li>命令行方式：略。</li>
+        </ul>
+    </li>
+    <li>配置文件加载优先级：
+        <img src="src/main/resources/static/img/configFilePosition.png"/>
+    </li>
+    <li>
+        加载外部配置文件：
+        <img src="src/main/resources/static/img/outOnload.png"/>
+    </li>
 </ul>

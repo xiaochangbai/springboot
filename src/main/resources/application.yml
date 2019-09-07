@@ -1,5 +1,26 @@
 server:
   port: 9999
+spring:
+  profiles:
+    active: test
+#开启springDebug模式，打印已经自动配置的组件
+debug: true
+---
+
+spring:
+  profiles: test
+server:
+  port: 9876
+
+
+---
+
+spring:
+  profiles: dev
+server:
+  port: 8899
+
+
 
 
 #person:
