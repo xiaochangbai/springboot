@@ -1,0 +1,21 @@
+server:
+  port: 9999
+
+
+#person:
+#  name: 肖大大
+#  age: 20
+#  address: 湖南省衡南县
+#  pets:
+#    name: 吉姆猫
+#    age: 5
+#  hobby:
+#    - 唱
+#    - 跳
+#    - rap
+#  teachers:
+#    math: 罗1素
+#    Java_SE: 向生
+#    Java_EE: 屈346
+
+

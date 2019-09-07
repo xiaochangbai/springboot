@@ -1,0 +1,65 @@
+<h1>SpringBoot 学习</h1>
+<h3><b>初始化构建：</b></h3>
+<ul>
+    <li>主配置文件（默认配置文件）：ClassPath路径下的application.properties或
+    application.yml文件
+        <ul>
+            <li>扩展：YAML标记语言。语法：key=(空格)value。</li>
+        </ul>
+    </li>
+    <li>从配置文件中取值的三种方式：
+        <ul>
+            <li>在类上添加@ConfigurationProperties注解（自动从<b>主配置文件中匹配值</b>）</li>
+            <li>在属性上添加@Value("#{1+8}")注解从<b>主配置文件</b>中取值。</li>
+            <li>在类上使用@PropertySource(value = {"classpath:person.properties"})注解，
+                    从<b>自定义的配置文件</b>中取值。可以配合上面两个注解一起使用。
+            </li>
+        </ul>
+    </li>
+    <li>
+    @ConfigurationProperties注解和@Value注解取值的差异
+    <table>
+        <tr>
+            <td></td>
+            <td>@ConfigurationProperties</td>
+            <td>@Value</td>
+        </tr>  
+         <tr>
+              <td>功能</td>
+              <td>批量注入配置文件中的属性</td>
+              <td>单个注入</td>
+         </tr>
+         <tr>
+               <td>松散绑定（松散语法）</td>
+               <td>支持</td>
+               <td>不支持</td>
+         </tr> 
+         <tr>
+               <td>SpEL</td>
+               <td>不支持</td>
+               <td>支持</td>
+         </tr> 
+         <tr>
+               <td>JSR303验证</td>
+               <td>支持（类上使用@Validated注解，
+               相应的字段加上要匹配格式的注解，例如：@Email验证邮件）</td>
+               <td>不支持</td>
+         </tr>
+         <tr>
+               <td>复杂类型封装（list、map等等）</td>
+               <td>支持</td>
+               <td>不支持</td>
+         </tr> 
+    </table>
+    </li>
+    <li>往容器中添加组件的方式：
+        <ul>
+            <li>配置文件的方式：在主程序（SpringbootApplicationTests）向添加@ImportResource(value = {""})注解，
+                value是一个数组，可以设置多个文件的路径</li>
+            <li>Java类的方式：类上使用@Configrution注解，方法上使用Bean注解。</li>
+        </ul>
+    </li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
