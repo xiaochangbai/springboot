@@ -1,0 +1,16 @@
+【XDD288】 2019-09-08 [main] INFO  cn.xdd.SpringbootApplication - Starting SpringbootApplication on LAPTOP-0NU5IA0Q with PID 48508 (D:\Workspace\IntelliJ_IDEA\springboot\target\classes started by XDD in D:\Workspace\IntelliJ_IDEA\springboot)
+【XDD288】 2019-09-08 [main] DEBUG cn.xdd.SpringbootApplication - Running with Spring Boot v2.1.8.RELEASE, Spring v5.1.9.RELEASE
+【XDD288】 2019-09-08 [main] INFO  cn.xdd.SpringbootApplication - The following profiles are active: test
+【XDD288】 2019-09-08 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9876 (http)
+【XDD288】 2019-09-08 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+【XDD288】 2019-09-08 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.24]
+【XDD288】 2019-09-08 [main] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/xdd] - Initializing Spring embedded WebApplicationContext
+【XDD288】 2019-09-08 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1998 ms
+【XDD288】 2019-09-08 [main] TRACE c.x.c.HelloConfig$$EnhancerBySpringCGLIB$$71ce86b3 - 【TRACE】等级日志记录
+【XDD288】 2019-09-08 [main] DEBUG c.x.c.HelloConfig$$EnhancerBySpringCGLIB$$71ce86b3 - 【DEBUG】等级日志记录
+【XDD288】 2019-09-08 [main] INFO  c.x.c.HelloConfig$$EnhancerBySpringCGLIB$$71ce86b3 - 【INFO】等级日志记录
+【XDD288】 2019-09-08 [main] WARN  c.x.c.HelloConfig$$EnhancerBySpringCGLIB$$71ce86b3 - 【WARN】等级日志记录
+【XDD288】 2019-09-08 [main] ERROR c.x.c.HelloConfig$$EnhancerBySpringCGLIB$$71ce86b3 - 【ERROR】等级日志记录
+【XDD288】 2019-09-08 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+【XDD288】 2019-09-08 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 9876 (http) with context path '/xdd'
+【XDD288】 2019-09-08 [main] INFO  cn.xdd.SpringbootApplication - Started SpringbootApplication in 3.166 seconds (JVM running for 4.287)
