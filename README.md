@@ -103,3 +103,45 @@
         <img src="src/main/resources/static/img/outOnload.png"/>
     </li>
 </ul>
+<hr/><br/>
+<h3>主要的一些注解</h3>
+<ul>
+    <li>
+        @SpringBootApplication: 标注当前类是springboot主应用程序类
+    </li>
+    <li>
+        @EnableAutoConfiguration: 自动配置类
+    <li>
+    <li>
+        @Import:导入相关类
+    </li>
+    <li>
+        @Configuration：表示当前类是一个配置类
+    </li>
+    <li>
+        @EnableConfigurationPropertie(xxxxxProperties.class)：启动指定类，并将该类交由springIOC容器管理。
+    </li>
+    <li>
+        @ConfigurationProperties:将配置文件中的值与当前类绑定
+    </li>    
+    <li>
+        @Conditionalxxxx: Spring底层@Conditional注解，根据不同的条件，如果满足指定的条件，整个配置类里面的配置就会生效。
+    </li>
+</ul>
+
+<hr/><br/>
+<h3>组件自动配置启动的原理：</h3>
+<ul>
+    <li>
+        核心配置类：AutoConfigurationImportSelector
+    </li>
+    <li>
+        会在类路径下的spring.factories文件夹中寻找EnableAutoConfiguration下面的组件类，开始自动配置。
+    </li>
+    <li>
+        xxxAutoConfiguration：自动配置类，会给容器中添加组件（通过构造注入相关配置文件xxxProperties）。
+    </li>
+    <li>
+        xxxProperties: 封装配置文件中相关属性。
+    </li>
+</ul>

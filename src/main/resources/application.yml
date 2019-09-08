@@ -5,12 +5,14 @@ spring:
     active: test
 #开启springDebug模式，打印已经自动配置的组件
 debug: true
----
 
+---
 spring:
   profiles: test
 server:
   port: 9876
+  servlet:
+    context-path: /xdd
 
 
 ---
@@ -19,6 +21,7 @@ spring:
   profiles: dev
 server:
   port: 8899
+
 
 
 
