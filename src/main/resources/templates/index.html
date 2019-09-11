@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <script type="text/javascript" src="webjars/jquery/3.4.1/jquery.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css ">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            alert("Jquery");
+        });
+    </script>
+</head>
+<body>
+    <div style="text-align: center;color:green;">
+        <h1 th:text="${content}"></h1>
+        <h1>Welcome to China</h1>
+        <h3 th:text="${date}"></h3>
+
+            <span th:each="l : ${list1}">l[[${l}]]</span>
+
+            <span th:each="a : ${arrays}">[[${a}]]</span>
+
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <td>姓名</td>
+                    <td>宠物</td>
+                    <td>老师</td>
+                    <td>爱好</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${per!=null}">
+                    <td  th:text="${per.name}"></td>
+                    <td th:text="${per.pets.name}"></td>
+                    <td>
+                        <span th:each="teacher: ${per.teachers}" th:text="${teacher}"></span>
+                    </td>
+                    <td>
+                        <span th:each="hobby : ${per.hobby}" th:text="${hobby}"></span>
+                    </td>
+
+                </tr>
+                <tr>
+                    <span ></span>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <ul>
+        <li th:text="${#locale.country}"></li>
+        <li th:text="${#locale.KOREA}"></li>
+        <li th:text="${#locale.CANADA}"></li>
+        <li th:text="${session}"></li>
+    </ul>
+</body>
+</html>

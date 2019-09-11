@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * @version 1.0
  * @ClassName HelloConfig
  * @description 使用@Configuration注解，表示这是个配置类
+ * 日志级别由低到高依次是：trace<debug<info<warn<error
  * @createTime 2019年09月07日 22:56
  */
 
@@ -25,14 +26,11 @@ public class HelloConfig {
      * @return
      */
     @Bean
-    public HelloService helloService(){
-        //日志级别由低到高依次是：trace<debug<info<warn<error
-        //springboot默认输出等级时infor
-        logger.trace("【TRACE】等级日志记录");
-        logger.debug("【DEBUG】等级日志记录");
-        logger.info("【INFO】等级日志记录");
-        logger.warn("【WARN】等级日志记录");
-        logger.error("【ERROR】等级日志记录");
-        return new HelloService();
+    public HelloService helloService() throws NoSuchMethodException {
+        String returnType=this.getClass().getMethod("helloService",null).getReturnType().getSimpleName();
+        logger.info(returnType+"，开始装配");
+        HelloService helloService= new HelloService();
+        logger.info(returnType+"加入容器成功。");
+        return helloService;
     }
 }

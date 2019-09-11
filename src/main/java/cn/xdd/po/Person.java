@@ -37,7 +37,7 @@ import java.util.Map;
 @PropertySource(value = {"classpath:person.properties"})
 public class Person {
 
-    //@Value("未知")
+    @Value("未知")
     //@Email
     private String name;
 
@@ -48,6 +48,15 @@ public class Person {
     private Pets pets;
     private List<Object> hobby;
     private Map<String,Object> teachers;
+
+    public Person(){}
+
+    public Person(String name, Pets pets, List<Object> hobby, Map<String, Object> teachers) {
+        this.name = name;
+        this.pets = pets;
+        this.hobby = hobby;
+        this.teachers = teachers;
+    }
 
     public String getName() {
         return name;

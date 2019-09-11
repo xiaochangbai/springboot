@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="https://v3.bootcss.com/favicon.ico">
+        <title>登陆</title>
+
+        <link href="css/bootstrapmin.css" rel="stylesheet">
+        <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+        <link href="css/signin.css" rel="stylesheet">
+  </head>
+    <div id="screen-shader" style="
+            transition: opacity 0.1s ease 0s; 
+            z-index: 2147483647;
+            margin: 0; 
+            border-radius: 0; 
+            padding: 0; 
+            background: #fac563; 
+            pointer-events: none; 
+            position: fixed; 
+            top: -10%; 
+            right: -10%; 
+            width: 120%; 
+            height: 120%; 
+            opacity: 0.5600;
+            mix-blend-mode: multiply; 
+            display: none;
+        "></div>
+    <body>
+
+    <div class="container">
+
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+
+    </div> <!-- /container -->
+  
+    <div id="download_plus_animation"></div>
+    </body>
+</html>

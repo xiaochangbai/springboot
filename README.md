@@ -145,3 +145,20 @@
         xxxProperties: 封装配置文件中相关属性。
     </li>
 </ul>
+
+<hr/><br/>
+<h3>日志：</h3>
+<ul>
+    <li>
+         spring-boot-starter-logging采用的日志配置是：SLF3J(门面)+Logback(实现）。
+    </li>
+    <li>
+         日志级别由低到高依次是：trace<debug<info<warn<error，默认是infor等级。
+    </li>
+    <li>
+         日志默认只在控制台进行输出打印,配置输出到文件中:logging.file=springboot.log
+    </li>
+    <li>
+         自定义日志输出格式：【XDD288】 %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{50} - %msg%n
+    </li>
+</ul>
