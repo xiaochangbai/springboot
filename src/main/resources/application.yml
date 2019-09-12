@@ -11,10 +11,13 @@ spring:
 --- #开发环境
 spring:
   profiles: dev
+  messages:
+    basename: Internationalization.login   #国际化配置基础名
 server:
   port: 8888
   servlet:
     context-path: /xdd
+
 #日志
 logging:
   path: logs
