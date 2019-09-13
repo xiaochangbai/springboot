@@ -33,17 +33,21 @@
 
     <!--语言选择按钮-->
     <div style="text-align: right;margin:20px;">
-        <a th:href="@{/logining(l='zh_CN')}">中文</a>|
-        <a th:href="@{/logining(l='en_US')}">英文</a>
+        <a th:href="@{/(l='zh_CN')}">中文</a>|
+        <a th:href="@{/(l='en_US')}">英文</a>
     </div>
     <!--登陆组件-->
     <div class="container">
-      <form class="form-signin">
+      <form class="form-signin" action="login" method="post">
         <h2 class="form-signin-heading" th:text="#{login.tipInfo}">Please sign in</h2>
+          <!--//登陆验证回显信息-->
+          <p style="color: red;" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
         <label for="inputEmail" class="sr-only" th:text="#{login.email_placeholder}">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" th:placeholder="#{login.email_placeholder}" required="" autofocus="">
+
+        <input type="email" name="email" id="inputEmail" class="form-control" th:placeholder="#{login.email_placeholder}" required="" autofocus="">
         <label for="inputPassword" class="sr-only" th:text="#{login.pwd_placeholder}">Password</label>
-        <input type="password" id="inputPassword" class="form-control" th:placeholder="#{login.pwd_placeholder}" required="">
+
+        <input type="password" name="password" id="inputPassword" class="form-control" th:placeholder="#{login.pwd_placeholder}" required="">
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> [[#{login.remember}]]
@@ -52,9 +56,11 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{login.sign_in}">Sign in</button>
       </form>
     </div> <!-- /container -->
-  
-    <div id="download_plus_animation"></div>
-    </body>
-    <script src="webjars/jquery/3.4.1/jquery.js"></script>
+    <!--<script src="webjars/jquery/3.4.1/jquery.js"></script>-->
     <script href="js/bootstrapmin.js"></script>
+    <script type="text/javascript">
+        console.log("测试：【邮箱：704566072@qq.com，密码：123456】");
+        console.log("当前时间："+new Date())
+    </script>
+    </body>
 </html>

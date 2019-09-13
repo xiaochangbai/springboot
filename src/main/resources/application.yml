@@ -12,7 +12,11 @@ spring:
 spring:
   profiles: dev
   messages:
-    basename: Internationalization.login   #国际化配置基础名
+    #国际化配置基础名\
+    basename: Internationalization.login
+  #禁止模板引擎缓存（按住Ctrl+F9重新加入资源）
+  thymeleaf:
+    cache: false
 server:
   port: 8888
   servlet:

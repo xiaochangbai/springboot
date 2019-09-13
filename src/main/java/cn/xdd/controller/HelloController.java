@@ -46,11 +46,6 @@ public class HelloController {
         request.getSession();
         return "index";
     }
-
-    @RequestMapping("/logining")
-    public String logining(Model model){
-        return "pages/login";
-    }
 }
 
 /*
