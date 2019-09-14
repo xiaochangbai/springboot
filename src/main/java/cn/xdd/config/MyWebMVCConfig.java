@@ -38,7 +38,7 @@ public class MyWebMVCConfig implements WebMvcConfigurer {
 
         //除了"/","/pages/login","/1"这些访问路径外，其他都拦截
         registry.addInterceptor(new UserHandleIntercept()).addPathPatterns("/**")
-                .excludePathPatterns("/","/pages/login","/login","/1");
+                .excludePathPatterns("/","/login","/login.html","/1");
     }
 
 
@@ -53,7 +53,6 @@ public class MyWebMVCConfig implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("pages/login");
         registry.addViewController("/login.html").setViewName("pages/login");
         registry.addViewController("/main").setViewName("pages/dashboard.html");
-        registry.addViewController("customers").setViewName("pages/customers.html");
     }
 
 

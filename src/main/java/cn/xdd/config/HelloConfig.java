@@ -1,6 +1,5 @@
 package cn.xdd.config;
 
-import cn.xdd.service.HelloService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -25,12 +24,12 @@ public class HelloConfig {
      * 默认方法名就是组件id，返回值就是组件类
      * @return
      */
-    @Bean
+  /*  @Bean
     public HelloService helloService() throws NoSuchMethodException {
         String returnType=this.getClass().getMethod("helloService",null).getReturnType().getSimpleName();
         logger.info(returnType+"，开始装配");
         HelloService helloService= new HelloService();
         logger.info(returnType+"加入容器成功。");
         return helloService;
-    }
+    }*/
 }

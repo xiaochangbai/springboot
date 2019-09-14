@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)https://v4.bootcss.com/docs/4.3/examples/dashboard/# -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>员工列表</title>
+
+    <link rel="canonical" href="https://v4ing.bootcss.com/docs/4.3/examples/dashboard/">
+
+    <!-- Bootstrap core CSS -->
+<link href="css/bootstrap1.css" rel="stylesheet">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet">
+  <style type="text/css">/* Chart.js */
+@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
+  <body>
+    <!--顶部导航栏，引用dashboard页面的顶部栏-->
+    <div th:replace="commons/bar :: topNav"></div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <!--侧边导航栏-->
+        <div th:replace="commons/bar :: sideNav(activeUrl='customers')"></div>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+          <h2><button class="btn btn-primary">添加用户</button></h2>
+          <div class="table-responsive">
+            <table class="table table-striped table-sm table-hover" style="text-align: center;">
+              <thead>
+              <tr>
+                <th>用户名</th>
+                <th>标识</th>
+                <th>密码</th>
+                <th>性别</th>
+                <th>部门id</th>
+                <th>年龄</th>
+                <th>手机号</th>
+                <th>职位</th>
+                <th>操作</th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr th:each="emp:${emps}">
+                  <td style="display: none;" th:text="${emp.id}"></td>
+                  <td th:text="${emp.name}"></td>
+                  <td th:text="${emp.identifier}"></td>
+                  <td th:text="${emp.passwd}"></td>
+                  <td th:text="${emp.gender}==0 ? '女' : '男'"></td>
+                  <td th:text="${emp.dep_identifier}"></td>
+                  <td th:text="${emp.age}"></td>
+                  <td th:text="${emp.phone}"></td>
+                  <td th:text="${emp.position}"></td>
+                  <td>
+                    <button class="btn btn-info btn-sm">修改</button>
+                    <button class="btn btn-danger btn-sm">删除</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </main>
+      </div>
+    </div>
+<script src="js/jquery-3.3.1.slim.min.js.download" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="js/bootstrap.bundle.js.download"></script>
+        <script src="js/feather.min.js.download"></script>
+        <script src="js/Chart.min.js.download"></script>
+        <script src="js/dashboard.js.download"></script>
+
+  </body><div id="screen-shader" style="
+            transition: opacity 0.1s ease 0s; 
+            z-index: 2147483647;
+            margin: 0; 
+            border-radius: 0; 
+            padding: 0; 
+            background: #fac563; 
+            pointer-events: none; 
+            position: fixed; 
+            top: -10%; 
+            right: -10%; 
+            width: 120%; 
+            height: 120%; 
+            opacity: 0.5600;
+            mix-blend-mode: multiply; 
+            display: none;
+        "></div>
+</html>
+<!--
+
+-->
