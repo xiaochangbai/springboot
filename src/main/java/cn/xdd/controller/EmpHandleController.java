@@ -1,5 +1,6 @@
 package cn.xdd.controller;
 
+import cn.xdd.po.EmpPaging;
 import cn.xdd.po.Employee;
 import cn.xdd.service.IEmpHandleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +27,23 @@ public class EmpHandleController {
     @Autowired
     private IEmpHandleService iEmpHandleService;
 
+    /**
+     * 分页查询显示
+     * @param modelMap
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     @GetMapping(value = "/emps/{id}")
     public String emps(ModelMap modelMap, @PathVariable(value = "id")long id) throws SQLException {
-        System.out.println(id);
-        List<Employee> list=iEmpHandleService.findAllEmp();
-        modelMap.put("emps",list);
+        if(id<=0){
+            //参数错误，返回控制台页面
+            return "pages/dashboard";
+        }
+
+        //MySQL分页查询，是从0位开始的。
+        EmpPaging empPaging=iEmpHandleService.empPaging(id,6);
+        modelMap.put("emps",empPaging);
         return "pages/customers";
     }
 

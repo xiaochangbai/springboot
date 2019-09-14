@@ -47,63 +47,83 @@
       <div class="row">
         <!--侧边导航栏-->
         <div th:replace="commons/bar :: sideNav(activeUrl='customers')"></div>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-          <h2><button class="btn btn-primary">添加用户</button></h2>
-          <div class="table-responsive">
-            <table class="table table-striped table-sm table-hover" style="text-align: center;">
-              <thead>
-              <tr>
-                <th>用户名</th>
-                <th>标识</th>
-                <th>密码</th>
-                <th>性别</th>
-                <th>部门id</th>
-                <th>年龄</th>
-                <th>手机号</th>
-                <th>职位</th>
-                <th>操作</th>
-              </tr>
-              </thead>
-              <tbody>
-                <tr th:each="emp:${emps}">
-                  <td style="display: none;" th:text="${emp.id}"></td>
-                  <td th:text="${emp.name}"></td>
-                  <td th:text="${emp.identifier}"></td>
-                  <td th:text="${emp.passwd}"></td>
-                  <td th:text="${emp.gender}==0 ? '女' : '男'"></td>
-                  <td th:text="${emp.dep_identifier}"></td>
-                  <td th:text="${emp.age}"></td>
-                  <td th:text="${emp.phone}"></td>
-                  <td th:text="${emp.position}"></td>
-                  <td>
-                    <button class="btn btn-info btn-sm">修改</button>
-                    <button class="btn btn-danger btn-sm">删除</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+              <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" th:if="${emps.status}==200">
+                  <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                  <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                      <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                  </div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                  <h2><button class="btn btn-primary">添加用户</button></h2>
+                  <div class="table-responsive">
+                      <table class="table table-striped table-sm table-hover" style="text-align: center;">
+                          <thead>
+                          <tr>
+                              <th>用户名</th>
+                              <th>标识</th>
+                              <th>密码</th>
+                              <th>性别</th>
+                              <th>部门id</th>
+                              <th>年龄</th>
+                              <th>手机号</th>
+                              <th>职位</th>
+                              <th>操作</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr th:each="emp:${emps.data}">
+                              <td style="display: none;" th:text="${emp.id}"></td>
+                              <td th:text="${emp.name}"></td>
+                              <td th:text="${emp.identifier}"></td>
+                              <td th:text="${emp.passwd}"></td>
+                              <td th:text="${emp.gender}==0 ? '女' : '男'"></td>
+                              <td th:text="${emp.dep_identifier}"></td>
+                              <td th:text="${emp.age}"></td>
+                              <td th:text="${emp.phone}"></td>
+                              <td th:text="${emp.position}"></td>
+                              <td>
+                                  <button class="btn btn-info btn-sm">修改</button>
+                                  <button class="btn btn-danger btn-sm">删除</button>
+                              </td>
+                          </tr>
+                          </tbody>
+                      </table>
 
-            <!--分页-->
-            <div style="position:absolute;right: 200px;">
-              <div class="pagination">
-                <ul>
-                  <li><a href="#">前一页</a></li>
-                  <li><a href="#">1</a></li>
-                  <li><span>...</span></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li><a href="#">5</a></li>
-                  <li><a href="#">6</a></li>
-                  <li><span>...</span></li>
-                  <li><a href="#">117</a></li>
-                  <li><a href="#">下一页</a></li>
-                </ul>
-              </div>
-            </div>
-            <br/><br/><br/><br/><br/><br/>
+                      <!--分页，最多显示7个选项按钮-->
+                      <div style="position:absolute;right: 200px;">
+                          <div class="pagination">
+                              <ul>
+                                  <li th:class="${emps.currentPageNum}==1 ? 'disabled' : ''">
+                                      <a th:href="@{/emps/}+${emps.currentPageNum-1}" th:if="${emps.currentPageNum}!=1">前一页</a>
+                                  </li>
+                                  <!--总页数小于等于7个时-->
+                                  <li th:if="${emps.totalPageNum}<=7" th:each="num:${#numbers.sequence(1,emps.totalPageNum+1)}" th:class="${emps.currentPageNum}==${num}? 'active' : ''">
+                                      <a th:href="@{/emps/}+${num}" th:text="${num}"></a>
+                                  </li>
+
+
+
+                                  <!---->
+                                 <!-- <li><a href="#">1</a></li>
+                                  <li><span>...</span></li>
+                                  <li><a href="#">2</a></li>
+                                  <li><a href="#">3</a></li>
+                                  <li><a href="#">4</a></li>
+                                  <li><a href="#">5</a></li>
+                                  <li><a href="#">6</a></li>
+                                  <li><span>...</span></li>
+                                  <li><a href="#">117</a></li>-->
+                                  <li th:class="${emps.currentPageNum}>=${emps.totalPageNum} ? 'disabled' : '' ">
+                                      <a th:href="@{/emps/}+${emps.currentPageNum+1}" th:if="${emps.currentPageNum} <= ${emps.totalPageNum}">下一页</a>
+                                  </li>
+                              </ul>
+                          </div>
+                      </div>
+                      <br/><br/><br/><br/><br/><br/>
+                  </div>
+              </main>
+          <main th:if="${emps.status}==500">
+              <h1 th:text="${emps.description}"></h1>
+          </main>
           </div>
-        </main>
       </div>
     </div>
   </body>

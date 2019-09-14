@@ -23,9 +23,9 @@ public interface IEmpHandleService {
 
     /**
      * 雇员信息分页查询操作
-     * @param startNum  开始编号
+     * @param pageNum  页码
      * @param num   每页的数量
      * @return
      */
-    EmpPaging empPaging(Long startNum,int num) throws SQLException;
+    EmpPaging empPaging(Long pageNum,int num) throws SQLException;
 }

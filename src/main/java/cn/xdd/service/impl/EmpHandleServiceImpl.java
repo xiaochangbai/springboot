@@ -28,13 +28,26 @@ public class EmpHandleServiceImpl implements cn.xdd.service.IEmpHandleService {
         return iEmployeeDao.findAll();
     }
 
+    /**
+     * 分页查询操作
+     * @param pageNum  页码
+     * @param num   每页的数量
+     * @return
+     */
     @Override
-    public EmpPaging empPaging(Long startNum, int num){
+    public EmpPaging empPaging(Long pageNum, int num){
         EmpPaging empPaging=new EmpPaging();
         try{
-            empPaging.setTotalPageNum(iEmployeeDao.findCount());
-            empPaging.setCurrentPageNum(startNum);
-            empPaging.addData(iEmployeeDao.findAll());
+            //数据总条数
+            long totalCount=iEmployeeDao.findCount();
+            //总的页数=总数据量/每页的数据量，向上取整
+            long totalPages= (long) Math.ceil(totalCount/num);
+            //当前查询的页在数据库中的位置=(当前页码-1)*每页的数据量
+            long startNum=(pageNum-1)*pageNum;
+
+            empPaging.setTotalPageNum(totalPages);
+            empPaging.setCurrentPageNum(pageNum);
+            empPaging.setData(iEmployeeDao.pagingQuery(startNum,num));
             empPaging.setStatus(200);
             empPaging.setDescription("成功");
         }catch (SQLException e){

@@ -1,5 +1,6 @@
 package cn.xdd.po;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ public class EmpPaging {
 
     private long totalPageNum;  //总页码数
 
-    private List<Object> data;   //数据
+    private List<Employee> data;   //数据
 
     private String description;   //当前状态描述信息（成功、失败、等等）
 
@@ -24,7 +25,7 @@ public class EmpPaging {
     public EmpPaging() {
     }
 
-    public EmpPaging(int status, long currentPageNum, long totalPageNum, List<Object> data,String description) {
+    public EmpPaging(int status, long currentPageNum, long totalPageNum, List<Employee> data,String description) {
         this.status = status;
         this.currentPageNum = currentPageNum;
         this.totalPageNum = totalPageNum;
@@ -32,8 +33,8 @@ public class EmpPaging {
         this.description=description;
     }
 
-    public void addData(Object object){
-        this.data.add(object);
+    public void addData(Employee employee){
+        this.data.add(employee);
     }
 
     public String getDescription() {
@@ -68,11 +69,11 @@ public class EmpPaging {
         this.totalPageNum = totalPageNum;
     }
 
-    public List<Object> getData() {
+    public List<Employee> getData() {
         return data;
     }
 
-    public void setData(List<Object> data) {
+    public void setData(List<Employee> data) {
         this.data = data;
     }
 
