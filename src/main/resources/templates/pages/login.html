@@ -8,9 +8,9 @@
         <meta name="author" content="">
         <link rel="icon" href="https://v3.bootcss.com/favicon.ico" />
         <title th:text="#{login.sign_in}">登陆</title>
-        <link href="css/bootstrapmin.css" rel="stylesheet" />
-        <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet" />
-        <link href="css/signin.css" rel="stylesheet" />
+        <link th:href="@{/static/css/bootstrapmin.css}" rel="stylesheet" />
+        <link th:href="@{/static/css/ie10-viewport-bug-workaround.css}" rel="stylesheet" />
+        <link th:href="@{/static/css/signin.css}" rel="stylesheet" />
   </head>
     <div id="screen-shader" style="
             transition: opacity 0.1s ease 0s; 
@@ -38,7 +38,7 @@
     </div>
     <!--登陆组件-->
     <div class="container">
-      <form class="form-signin" action="login" method="post">
+      <form class="form-signin" th:action="@{/login}" method="post">
         <h2 class="form-signin-heading" th:text="#{login.tipInfo}">Please sign in</h2>
           <!--//登陆验证回显信息-->
           <p style="color: red;" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
@@ -57,7 +57,7 @@
       </form>
     </div> <!-- /container -->
     <!--<script src="webjars/jquery/3.4.1/jquery.js"></script>-->
-    <script href="js/bootstrapmin.js"></script>
+    <script th:href="@{/static/js/bootstrapmin.js}"></script>
     <script type="text/javascript">
         console.log("测试：【邮箱：704566072@qq.com，密码：123456】");
         console.log("当前时间："+new Date())

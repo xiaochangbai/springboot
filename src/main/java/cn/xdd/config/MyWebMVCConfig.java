@@ -7,10 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
 
 import java.util.List;
 
@@ -34,11 +31,13 @@ public class MyWebMVCConfig implements WebMvcConfigurer {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new OverallIntercept()).addPathPatterns("/*");
-
-        //除了"/","/pages/login","/1"这些访问路径外，其他都拦截
-        registry.addInterceptor(new UserHandleIntercept()).addPathPatterns("/**")
-                .excludePathPatterns("/","/login","/login.html","/1");
+        InterceptorRegistration addInterceptor = registry.addInterceptor(new UserHandleIntercept());
+        addInterceptor.excludePathPatterns("/static/**");//不拦截静态资源
+        addInterceptor.excludePathPatterns("/login.html");
+        addInterceptor.excludePathPatterns("/login");
+        addInterceptor.excludePathPatterns("/1");
+        addInterceptor.excludePathPatterns("/");
+        addInterceptor.addPathPatterns("/**");
     }
 
 

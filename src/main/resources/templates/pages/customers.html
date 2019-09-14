@@ -10,10 +10,12 @@
     <meta name="generator" content="Jekyll v3.8.5">
     <title>员工列表</title>
 
-    <link rel="canonical" href="https://v4ing.bootcss.com/docs/4.3/examples/dashboard/">
+<!--    <link rel="canonical" href="https://v4ing.bootcss.com/docs/4.3/examples/dashboard/">-->
 
     <!-- Bootstrap core CSS -->
-<link href="css/bootstrap1.css" rel="stylesheet">
+     <link th:href="@{/static/css/bootstrap1.css}" rel="stylesheet">
+    <link th:href="@{/static/css/bootstrap2.css}" rel="stylesheet">
+
 
 
     <style>
@@ -33,9 +35,10 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="css/dashboard.css" rel="stylesheet">
+    <link th:href="@{/static/css/dashboard.css}" rel="stylesheet">
   <style type="text/css">/* Chart.js */
-@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
+    @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style>
+  </head>
   <body>
     <!--顶部导航栏，引用dashboard页面的顶部栏-->
     <div th:replace="commons/bar :: topNav"></div>
@@ -79,34 +82,30 @@
                 </tr>
               </tbody>
             </table>
+
+            <!--分页-->
+            <div style="position:absolute;right: 200px;">
+              <div class="pagination">
+                <ul>
+                  <li><a href="#">前一页</a></li>
+                  <li><a href="#">1</a></li>
+                  <li><span>...</span></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li><a href="#">6</a></li>
+                  <li><span>...</span></li>
+                  <li><a href="#">117</a></li>
+                  <li><a href="#">下一页</a></li>
+                </ul>
+              </div>
+            </div>
+            <br/><br/><br/><br/><br/><br/>
           </div>
         </main>
       </div>
     </div>
-<script src="js/jquery-3.3.1.slim.min.js.download" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-      <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="js/bootstrap.bundle.js.download"></script>
-        <script src="js/feather.min.js.download"></script>
-        <script src="js/Chart.min.js.download"></script>
-        <script src="js/dashboard.js.download"></script>
-
-  </body><div id="screen-shader" style="
-            transition: opacity 0.1s ease 0s; 
-            z-index: 2147483647;
-            margin: 0; 
-            border-radius: 0; 
-            padding: 0; 
-            background: #fac563; 
-            pointer-events: none; 
-            position: fixed; 
-            top: -10%; 
-            right: -10%; 
-            width: 120%; 
-            height: 120%; 
-            opacity: 0.5600;
-            mix-blend-mode: multiply; 
-            display: none;
-        "></div>
+  </body>
+ <!-- <script th:src="@{/static/js/feather.min.js.download}"></script>-->
 </html>
-<!--
-
--->

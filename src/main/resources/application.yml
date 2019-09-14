@@ -17,6 +17,8 @@ spring:
   #禁止模板引擎缓存（按住Ctrl+F9重新加入资源）
   thymeleaf:
     cache: false
+  mvc:
+    static-path-pattern: /static/**
 server:
   port: 8888
   servlet:

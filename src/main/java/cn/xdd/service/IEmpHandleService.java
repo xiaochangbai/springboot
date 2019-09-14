@@ -1,5 +1,6 @@
 package cn.xdd.service;
 
+import cn.xdd.po.EmpPaging;
 import cn.xdd.po.Employee;
 
 import java.sql.SQLException;
@@ -19,4 +20,12 @@ public interface IEmpHandleService {
      * @throws SQLException
      */
     List<Employee> findAllEmp() throws SQLException;
+
+    /**
+     * 雇员信息分页查询操作
+     * @param startNum  开始编号
+     * @param num   每页的数量
+     * @return
+     */
+    EmpPaging empPaging(Long startNum,int num) throws SQLException;
 }

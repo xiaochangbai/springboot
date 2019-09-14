@@ -19,4 +19,20 @@ public interface IEmployeeDao {
      * @throws SQLException
      */
     List<Employee> findAll() throws SQLException;
+
+    /**
+     * 查询雇员的数量
+     * @return
+     * @throws SQLException
+     */
+    Long findCount()throws SQLException;
+
+
+    /**
+     * 分页查询
+     * @param startNum  开始id
+     * @param num   每页显示的个数
+     * @return
+     */
+    List<Employee> pagingQuery(Long startNum,int num) throws SQLException;
 }
