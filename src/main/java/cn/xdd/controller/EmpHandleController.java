@@ -1,18 +1,15 @@
 package cn.xdd.controller;
 
-import cn.xdd.po.EmpPaging;
 import cn.xdd.po.Employee;
 import cn.xdd.service.IEmpHandleService;
+import cn.xdd.util.PagingShowUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  * @author xchb
@@ -40,9 +37,9 @@ public class EmpHandleController {
             //参数错误，返回控制台页面
             return "pages/dashboard";
         }
-
         //MySQL分页查询，是从0位开始的。
-        EmpPaging empPaging=iEmpHandleService.empPaging(id,6);
+        PagingShowUtil<Employee> empPaging=iEmpHandleService.empPaging(id,6);
+        System.out.println(empPaging);
         modelMap.put("emps",empPaging);
         return "pages/customers";
     }

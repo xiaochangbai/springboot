@@ -1,7 +1,7 @@
 package cn.xdd.service;
 
-import cn.xdd.po.EmpPaging;
 import cn.xdd.po.Employee;
+import cn.xdd.util.PagingShowUtil;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -27,5 +27,5 @@ public interface IEmpHandleService {
      * @param num   每页的数量
      * @return
      */
-    EmpPaging empPaging(Long pageNum,int num) throws SQLException;
+    PagingShowUtil<Employee> empPaging(Long pageNum, int num) throws SQLException;
 }

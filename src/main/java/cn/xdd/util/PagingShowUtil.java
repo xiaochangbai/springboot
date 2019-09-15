@@ -1,4 +1,6 @@
-package cn.xdd.po;
+package cn.xdd.util;
+
+import cn.xdd.po.Employee;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,31 +12,49 @@ import java.util.List;
  * @description 分页查询结果返回对象。
  * @createTime 2019年09月14日 21:30
  */
-public class EmpPaging {
+public class PagingShowUtil<T> {
+    private final static int SUCCESS_STATUS= 200;
+    private final static int FAIL_STATUS=500;
+
     private int status;  //状态码，200表示成功，500表示失败
 
     private long currentPageNum;  //当前页码
 
     private long totalPageNum;  //总页码数
 
-    private List<Employee> data;   //数据
+    private long totalDataCount; //总数据量
+
+    private List<T> data;   //数据
 
     private String description;   //当前状态描述信息（成功、失败、等等）
 
 
-    public EmpPaging() {
+
+    public PagingShowUtil() {
     }
 
-    public EmpPaging(int status, long currentPageNum, long totalPageNum, List<Employee> data,String description) {
+    public PagingShowUtil(int status, long currentPageNum, long totalPageNum, long totalDataCount, List<T> data, String description) {
         this.status = status;
         this.currentPageNum = currentPageNum;
         this.totalPageNum = totalPageNum;
+        this.totalDataCount = totalDataCount;
         this.data = data;
-        this.description=description;
+        this.description = description;
     }
 
-    public void addData(Employee employee){
-        this.data.add(employee);
+    public void addData(T t){
+        if(this.data == null){
+            this.data=new ArrayList<>();
+        }
+        this.data.add(t);
+    }
+
+    public long getTotalDataCount() {
+        return totalDataCount;
+    }
+
+    public void setTotalDataCount(long totalDataCount) {
+        this.totalDataCount = totalDataCount;
     }
 
     public String getDescription() {
@@ -69,20 +89,21 @@ public class EmpPaging {
         this.totalPageNum = totalPageNum;
     }
 
-    public List<Employee> getData() {
+    public List<T> getData() {
         return data;
     }
 
-    public void setData(List<Employee> data) {
+    public void setData(List<T> data) {
         this.data = data;
     }
 
     @Override
     public String toString() {
-        return "EmpPaging{" +
+        return "PagingShowUtil{" +
                 "status=" + status +
                 ", currentPageNum=" + currentPageNum +
                 ", totalPageNum=" + totalPageNum +
+                ", totalDataCount=" + totalDataCount +
                 ", data=" + data +
                 ", description='" + description + '\'' +
                 '}';

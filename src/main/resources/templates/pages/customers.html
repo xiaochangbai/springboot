@@ -91,29 +91,50 @@
                       <div style="position:absolute;right: 200px;">
                           <div class="pagination">
                               <ul>
+                                  <!--前一页-->
                                   <li th:class="${emps.currentPageNum}==1 ? 'disabled' : ''">
-                                      <a th:href="@{/emps/}+${emps.currentPageNum-1}" th:if="${emps.currentPageNum}!=1">前一页</a>
+                                      <a th:href="@{/emps/}+${emps.currentPageNum-1}" th:if="${emps.currentPageNum}!=1 and ${emps.currentPageNum<=emps.totalPageNum}">前一页</a>
                                   </li>
+
                                   <!--总页数小于等于7个时-->
-                                  <li th:if="${emps.totalPageNum}<=7" th:each="num:${#numbers.sequence(1,emps.totalPageNum+1)}" th:class="${emps.currentPageNum}==${num}? 'active' : ''">
+                                  <li th:if="${emps.totalPageNum}<=7" th:each="num:${#numbers.sequence(1,emps.totalPageNum)}" th:class="${emps.currentPageNum}==${num}? 'active' : ''">
                                       <a th:href="@{/emps/}+${num}" th:text="${num}"></a>
                                   </li>
 
-
-
-                                  <!---->
-                                 <!-- <li><a href="#">1</a></li>
-                                  <li><span>...</span></li>
-                                  <li><a href="#">2</a></li>
-                                  <li><a href="#">3</a></li>
-                                  <li><a href="#">4</a></li>
-                                  <li><a href="#">5</a></li>
-                                  <li><a href="#">6</a></li>
-                                  <li><span>...</span></li>
-                                  <li><a href="#">117</a></li>-->
-                                  <li th:class="${emps.currentPageNum}>=${emps.totalPageNum} ? 'disabled' : '' ">
-                                      <a th:href="@{/emps/}+${emps.currentPageNum+1}" th:if="${emps.currentPageNum} <= ${emps.totalPageNum}">下一页</a>
+                                  <!--省略号显示在前面-->
+                                  <li th:if="${emps.currentPageNum >= emps.totalPageNum-4 and emps.currentPageNum<=emps.totalPageNum}" th:each="num:${#numbers.sequence(1,7)}">
+                                      <a th:if="${num==1}" th:href="@{/emps/}+${num}" th:text="${num}"></a>
+                                      <a th:if="${num==2}" th:text="..."></a>
+                                      <a th:if="${num==3}" th:href="@{/emps/}+${emps.currentPageNum-1}" th:text="${emps.currentPageNum-1}"></a>
+                                      <a th:if="${num==4}" th:href="@{/emps/}+${emps.currentPageNum}" th:text="${emps.currentPageNum}"></a>
+                                      <a th:if="${num==5 and emps.currentPageNum+1<=emps.totalPageNum}" th:href="@{/emps/}+${emps.currentPageNum+1}" th:text="${emps.currentPageNum+1}"></a>
+                                      <a th:if="${num==6 and emps.currentPageNum+2<=emps.totalPageNum}" th:href="@{/emps/}+${emps.currentPageNum+2}" th:text="${emps.currentPageNum+2}"></a>
+                                      <a th:if="${num==7 and emps.currentPageNum+3<=emps.totalPageNum}" th:href="@{/emps/}+${emps.currentPageNum+3}" th:text="${emps.currentPageNum+3}"></a>
                                   </li>
+
+                                  <!--省略号显示在后面-->
+                                  <li th:if="${emps.currentPageNum <= 4 && emps.totalPageNum!=8}" th:each="num:${#numbers.sequence(1,7)}">
+                                      <a th:if="${num <= 5 or num==7}" th:href="@{/emps/}+${num}" th:text="${num}"></a>
+                                      <a th:if="${num==6}" disabled="disabled" th:text="..."></a>
+                                  </li>
+
+                                  <!--省略号显示在中间-->
+                                  <li th:if="${4< emps.currentPageNum and emps.currentPageNum < emps.totalPageNum-4 and emps.currentPageNum<=emps.totalPageNum}" th:each="num:${#numbers.sequence(1,7)}">
+                                      <a th:if="${num==1}" th:href="@{/emps/}+${num}" th:text="${num}"></a>
+                                      <a th:if="${num==2}" disabled="disabled" th:text="..."></a>
+                                      <a th:if="${num==3}" th:href="@{/emps/}+${emps.currentPageNum-1}" th:text="${emps.currentPageNum-1}"></a>
+                                      <a th:if="${num==4}" th:href="@{/emps/}+${emps.currentPageNum}" th:text="${emps.currentPageNum}"></a>
+                                      <a th:if="${num==5}" th:href="@{/emps/}+${emps.currentPageNum+1}" th:text="${emps.currentPageNum+1}"></a>
+                                      <a th:if="${num==6}" disabled="disabled" th:text="..."></a>
+                                      <a th:if="${num==7}" th:href="@{/emps/}+${emps.totalPageNum}" th:text="${emps.totalPageNum}"></a>
+                                  </li>
+
+                                  <!--后一页-->
+                                  <li th:class="${emps.currentPageNum}>=${emps.totalPageNum} ? 'disabled' : '' ">
+                                      <a th:href="@{/emps/}+${emps.currentPageNum+1}" th:if="${emps.currentPageNum < emps.totalPageNum}">下一页</a>
+                                  </li>
+                                  &nbsp;&nbsp;&nbsp;
+                                  <span style="color: green;">总数据量：[[${emps.totalDataCount}]]</span>
                               </ul>
                           </div>
                       </div>
