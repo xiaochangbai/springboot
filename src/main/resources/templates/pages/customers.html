@@ -52,7 +52,7 @@
                   <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
                       <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
                   </div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-                  <h2><button class="btn btn-primary">添加用户</button></h2>
+                  <h2><a th:href="@{/addCustomer}"><button class="btn btn-primary">添加用户</button></a></h2>
                   <div class="table-responsive">
                       <table class="table table-striped table-sm table-hover" style="text-align: center;">
                           <thead>
@@ -102,7 +102,7 @@
                                   </li>
 
                                   <!--省略号显示在前面-->
-                                  <li th:if="${emps.currentPageNum >= emps.totalPageNum-4 and emps.currentPageNum<=emps.totalPageNum}" th:each="num:${#numbers.sequence(1,7)}">
+                                  <li th:if="${emps.currentPageNum >= emps.totalPageNum-4 and emps.currentPageNum<=emps.totalPageNum}" th:each="num:${#numbers.sequence(1,7)}" th:class="${emps.currentPageNum}==${num}? 'active' : ''">
                                       <a th:if="${num==1}" th:href="@{/emps/}+${num}" th:text="${num}"></a>
                                       <a th:if="${num==2}" th:text="..."></a>
                                       <a th:if="${num==3}" th:href="@{/emps/}+${emps.currentPageNum-1}" th:text="${emps.currentPageNum-1}"></a>
@@ -113,13 +113,14 @@
                                   </li>
 
                                   <!--省略号显示在后面-->
-                                  <li th:if="${emps.currentPageNum <= 4 && emps.totalPageNum!=8}" th:each="num:${#numbers.sequence(1,7)}">
-                                      <a th:if="${num <= 5 or num==7}" th:href="@{/emps/}+${num}" th:text="${num}"></a>
+                                  <li th:if="${emps.currentPageNum <= 4 && emps.totalPageNum!=8}" th:each="num:${#numbers.sequence(1,7)}" th:class="${emps.currentPageNum}==${num}? 'active' : ''">
+                                      <a th:if="${num <= 5}" th:href="@{/emps/}+${num}" th:text="${num}"></a>
                                       <a th:if="${num==6}" disabled="disabled" th:text="..."></a>
+                                      <a th:if="${num==7}" th:href="@{/emps/}+${emps.totalPageNum}"  th:text="${emps.totalPageNum}"></a>
                                   </li>
 
                                   <!--省略号显示在中间-->
-                                  <li th:if="${4< emps.currentPageNum and emps.currentPageNum < emps.totalPageNum-4 and emps.currentPageNum<=emps.totalPageNum}" th:each="num:${#numbers.sequence(1,7)}">
+                                  <li th:if="${4< emps.currentPageNum and emps.currentPageNum < emps.totalPageNum-4 and emps.currentPageNum<=emps.totalPageNum}" th:each="num:${#numbers.sequence(1,7)}" th:class="${emps.currentPageNum}==${num}? 'active' : ''">
                                       <a th:if="${num==1}" th:href="@{/emps/}+${num}" th:text="${num}"></a>
                                       <a th:if="${num==2}" disabled="disabled" th:text="..."></a>
                                       <a th:if="${num==3}" th:href="@{/emps/}+${emps.currentPageNum-1}" th:text="${emps.currentPageNum-1}"></a>

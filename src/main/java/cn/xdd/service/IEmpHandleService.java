@@ -28,4 +28,12 @@ public interface IEmpHandleService {
      * @return
      */
     PagingShowUtil<Employee> empPaging(Long pageNum, int num) throws SQLException;
+
+    /**
+     *  插入用户
+     * @param employee
+     * @return  插入成功返回true，否则返回false
+     * @throws SQLException
+     */
+    boolean insert(Employee employee)throws SQLException;
 }

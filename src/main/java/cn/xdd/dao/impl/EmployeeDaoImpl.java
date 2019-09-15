@@ -25,25 +25,37 @@ public class EmployeeDaoImpl implements cn.xdd.dao.IEmployeeDao {
     @Autowired
     @Qualifier("dbcpDataSource")
     private DataSource dataSource;
-    private QueryRunner queryRunner;
 
     @Override
     public List<Employee> findAll() throws SQLException {
-        queryRunner=new QueryRunner(dataSource);
-        List<Employee> list=queryRunner.query("select * from employee",new BeanListHandler<Employee>(Employee.class));
+        QueryRunner queryRunner=new QueryRunner(dataSource);
+        List<Employee> list= queryRunner.<List<Employee>>query("select * from employee", new BeanListHandler<Employee>(Employee.class));
         return list;
     }
 
     @Override
     public Long findCount() throws SQLException {
-        queryRunner=new QueryRunner(dataSource);
+        QueryRunner queryRunner=new QueryRunner(dataSource);
         return (Long) queryRunner.query("select count(id) from employee", new ArrayHandler())[0];
     }
 
     @Override
     public List<Employee> pagingQuery(Long startNum, int num) throws SQLException {
-        queryRunner=new QueryRunner(dataSource);
+        QueryRunner queryRunner=new QueryRunner(dataSource);
         return queryRunner.query("select * from employee limit ?,?",new BeanListHandler<Employee>(Employee.class),startNum,num);
+    }
+
+    @Override
+    public Long insert(Employee employee) throws SQLException {
+        String name=employee.getName()==null? "A中孝" : employee.getName();
+        String passwd=employee.getPasswd()==null? "123456" : employee.getPasswd();
+        String phone=employee.getPhone()==null ? "15198970976" : employee.getPhone();
+        String position=employee.getPosition()==null ? "湖南常德桃花源" : employee.getPosition();
+        QueryRunner queryRunner=new QueryRunner(dataSource);
+        Object object=queryRunner.insert("insert into employee set name=?," +
+                "passwd=?,gender=?,age=?,phone=?,position=?,dep_identifier=?",new ArrayHandler(),
+                name,passwd,employee.getGender(),employee.getAge(),phone,position,employee.getDep_identifier())[0];
+        return Long.valueOf(object.toString());
     }
 
 

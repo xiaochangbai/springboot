@@ -44,7 +44,6 @@ public class EmpHandleServiceImpl implements cn.xdd.service.IEmpHandleService {
             long totalPages= (long) Math.ceil(totalCount*1.0/num);
             //当前查询的页在数据库中的位置=(当前页码-1)*每页的数据量
             long startNum=(pageNum-1)*num;
-            System.out.println("页面编号："+pageNum+", 开始位置："+startNum);
             empPaging.setTotalDataCount(totalCount);
             empPaging.setTotalPageNum(totalPages);
             empPaging.setCurrentPageNum(pageNum);
@@ -56,6 +55,11 @@ public class EmpHandleServiceImpl implements cn.xdd.service.IEmpHandleService {
             empPaging.setDescription("失败【错误代码202】");
         }
         return empPaging;
+    }
+
+    @Override
+    public boolean insert(Employee employee) throws SQLException {
+        return iEmployeeDao.insert(employee)>1;
     }
 
 

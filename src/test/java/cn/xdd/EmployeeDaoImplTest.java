@@ -42,4 +42,12 @@ public class EmployeeDaoImplTest {
         List<Employee> list=employeeDao.pagingQuery(1L,3);
         list.forEach((e)-> System.out.println(e));
     }
+
+    @Test
+    public void testInsert() throws SQLException {
+        Employee employee=new Employee();
+        employee.setName("按时缴费卡十九分2222");
+        long effect=employeeDao.insert(employee);
+        System.out.println("影响："+effect);
+    }
 }

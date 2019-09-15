@@ -1,5 +1,7 @@
 package cn.xdd.po;
 
+import java.io.Serializable;
+
 /**
  * @author xchb
  * @version 1.0
@@ -7,7 +9,7 @@ package cn.xdd.po;
  * @description null
  * @createTime 2019年09月14日 11:41
  */
-public class Employee {
+public class Employee implements Serializable {
 
     private long id;
     private String name;

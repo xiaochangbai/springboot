@@ -35,4 +35,12 @@ public interface IEmployeeDao {
      * @return
      */
     List<Employee> pagingQuery(Long startNum,int num) throws SQLException;
+
+    /**
+     * 插入单个用户信息
+     * @param employee
+     * @return
+     * @throws SQLException
+     */
+    Long insert(Employee employee) throws SQLException;
 }

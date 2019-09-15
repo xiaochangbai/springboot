@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)https://v4.bootcss.com/docs/4.3/examples/dashboard/# -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>添加员工</title>
+
+<!--    <link rel="canonical" href="https://v4ing.bootcss.com/docs/4.3/examples/dashboard/">-->
+
+    <!-- Bootstrap core CSS -->
+     <link th:href="@{/static/css/bootstrap1.css}" rel="stylesheet">
+
+      <!--    <link th:href="@{/static/css/bootstrap2.css}" rel="stylesheet">-->
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link th:href="@{/static/css/dashboard.css}" rel="stylesheet">
+  <style type="text/css">/* Chart.js */
+    @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style>
+  </head>
+  <body>
+    <!--顶部导航栏，引用dashboard页面的顶部栏-->
+    <div th:replace="commons/bar :: topNav"></div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <!--侧边导航栏-->
+        <div th:replace="commons/bar :: sideNav(activeUrl='customers')"></div>
+          <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+              <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                  <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                      <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                  </div>
+                  <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                      <div style="position:absolute;width:200%;height:200%;left:0; top:0">
+
+                      </div>
+                  </div>
+              </div>
+              <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                  <!--添加用户表单-->
+                  <form onsubmit="return formCheck()" action="emp" method="post">
+                      <div class="form-group">
+                          <label for="exampleInputName2">Name</label>&nbsp;
+                          <input type="text" name="name" class="form-control" id="exampleInputName2" placeholder="Jane Doe" style="display: inline-block">
+                      </div>
+                      <div class="form-group">
+                          <label for="exampleInputEmail2">Password</label>&nbsp;
+                          <input type="password" name="passwd" class="form-control" id="exampleInputEmail2" placeholder="Password" style="display: inline-block">
+                      </div>
+                      <br/><hr/>
+                      <span>性别：</span>
+                      <div style="display: inline-block">
+                          <label>
+                              <input type="radio" value="1" name="gender" id="optionsRadios1" checked>
+                              男
+                          </label>
+                          <label>
+                              <input type="radio" value="0" name="gender" id="optionsRadios2">
+                              女
+                          </label>
+                      </div><br/><hr/>
+                      <span>部门</span>
+                      <div style="display: inline-block;">
+                          <select class="form-control" name="dep_identifier">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                          </select>
+                      </div><br/><hr/>
+                      <span name="email">邮箱</span>
+                      <div style="display: inline-block;">
+                          <input id="email_id" name="email" type="email" class="form-control" placeholder="jane.doe@example.com">
+                      </div>
+                      <br/><br/><hr/>
+                      <div style="text-align: center" th:class="${status=='添加成功' ? 'greenColor':'redColor'}">
+                        <b><h5 id="msg_id" th:if="${status!=null}">[[${status}]]</h5></b>
+                      </div>
+                      <div style="text-align: center;">
+                          <button type="submit" class="btn btn-primary btn-lg btn-block">添加</button>
+                      </div>
+                  </form>
+              </div>
+        </main>
+    </div>
+    </div>
+  <script type="text/javascript">
+      function formCheck() {
+          var userName=document.getElementById("exampleInputName2").value;
+          var password=document.getElementById("exampleInputEmail2").value;
+          var email=document.getElementById("email_id").value;
+          if(userName!=null && userName.trim()!=""
+          && password!=null && password.trim()!=""
+          && email!=null && email.trim()!=""){
+              return true;
+          }
+          alert("请正确填写信息");
+          return false;
+      }
+      window.onclick=function (ev) {
+          document.getElementById("msg_id").innerText="";
+      }
+
+  </script>
+  <style>
+      .greenColor{
+          color:green;
+          font-weight: bolder;
+      }
+      .redColor{
+          color: red;
+          font-weight: bolder;
+      }
+  </style>
+  </body>
+</html>
