@@ -7,13 +7,22 @@ import org.springframework.context.annotation.ImportResource;
 
 import java.sql.SQLException;
 
-//@ImportResource(value = {"classpath:bean.xml"})
+
 @SpringBootApplication
+/**
+ * SpringBoot主程序员（后续添加的注解）
+ * @author xchb
+ * @version 1.0
+ * @ClassName SpringbootApplication
+ * @description null
+ * @createTime 2019年09月16日 13:15
+ * 其他注解：
+ * @ImportResource(value = {"classpath:bean.xml"})  //导入其他配置
+ */
 public class SpringbootApplication {
 
     public static void main(String[] args) throws SQLException {
         SpringApplication.run(SpringbootApplication.class, args);
-        new EmployeeDaoImpl().findAll();
     }
 
 }

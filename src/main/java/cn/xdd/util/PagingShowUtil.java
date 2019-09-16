@@ -13,20 +13,45 @@ import java.util.List;
  * @createTime 2019年09月14日 21:30
  */
 public class PagingShowUtil<T> {
+    /**
+     * 成功状态码
+     */
     private final static int SUCCESS_STATUS= 200;
+
+    /**
+     * 失败状态码
+     */
     private final static int FAIL_STATUS=500;
 
-    private int status;  //状态码，200表示成功，500表示失败
+    /**
+     * 状态码，200表示成功，500表示失败
+     */
+    private int status;
 
-    private long currentPageNum;  //当前页码
+    /**
+     * 当前页码
+     */
+    private long currentPageNum;
 
-    private long totalPageNum;  //总页码数
+    /**
+     * 总页码数
+     */
+    private long totalPageNum;
 
-    private long totalDataCount; //总数据量
+    /**
+     * 总数据量
+     */
+    private long totalDataCount;
 
-    private List<T> data;   //数据
+    /**
+     * 数据
+     */
+    private List<T> data;
 
-    private String description;   //当前状态描述信息（成功、失败、等等）
+    /**
+     * 当前状态描述信息（成功、失败、等等）
+     */
+    private String description;
 
 
 

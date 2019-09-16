@@ -57,6 +57,12 @@ public class EmpHandleServiceImpl implements cn.xdd.service.IEmpHandleService {
         return empPaging;
     }
 
+    /**
+     * 插入用户数据
+     * @param employee  需要插入的雇员对象
+     * @return 插入成功返回true，反之返回false
+     * @throws SQLException
+     */
     @Override
     public boolean insert(Employee employee) throws SQLException {
         return iEmployeeDao.insert(employee)>1;

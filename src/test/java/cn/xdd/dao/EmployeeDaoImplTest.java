@@ -1,4 +1,4 @@
-package cn.xdd;
+package cn.xdd.dao;
 
 import cn.xdd.dao.impl.EmployeeDaoImpl;
 import cn.xdd.po.Employee;
@@ -9,19 +9,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.sql.SQLException;
-import java.sql.SQLOutput;
 import java.util.List;
 
+
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
 /**
  * @author xchb
  * @version 1.0
  * @ClassName EmployeeDaoImplTest
- * @description null
+ * @description EmployeeDaoImpl测试类
  * @createTime 2019年09月14日 12:18
  */
-
-@RunWith(SpringRunner.class)
-@SpringBootTest
 public class EmployeeDaoImplTest {
 
     @Autowired
