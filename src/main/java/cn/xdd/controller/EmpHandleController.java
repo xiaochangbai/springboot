@@ -3,7 +3,6 @@ package cn.xdd.controller;
 import cn.xdd.po.Employee;
 import cn.xdd.service.IEmpHandleService;
 import cn.xdd.util.PagingShowUtil;
-import com.sun.deploy.net.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,10 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 
 /**
+ * 雇员控制器
  * @author xchb
  * @version 1.0
  * @ClassName EmpHandleController
- * @description null
+ * @description restFul风格的请求
  * @createTime 2019年09月14日 15:21
  */
 @Controller
@@ -32,7 +32,7 @@ public class EmpHandleController {
      * 分页查询显示
      * @param modelMap
      * @param id
-     * @return
+     * @return  转发到雇员信息展示页面
      * @throws SQLException
      */
     @GetMapping(value = "/emps/{id}")
@@ -47,6 +47,13 @@ public class EmpHandleController {
         return "pages/customers";
     }
 
+    /**
+     * 插入用户数据
+     * @param employee
+     * @param email
+     * @param request
+     * @return  转发到雇员信息添加页面
+     */
     @PostMapping("/emp")
     public String emp(Employee employee, @RequestParam("email") String email, HttpServletRequest request){
         employee.setPosition(email);
@@ -59,9 +66,8 @@ public class EmpHandleController {
         } catch (SQLException e) {
             e.printStackTrace();
             request.setAttribute("status","添加失败，请稍后重试【202】");
-        }finally {
-            return "pages/addCustomers";
         }
+        return "pages/addCustomers";
     }
 
 

@@ -2,12 +2,12 @@ package cn.xdd.intercept;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import org.thymeleaf.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * 用户登陆权限拦截器
  * @author xchb
  * @version 1.0
  * @ClassName UserHandleIntercept

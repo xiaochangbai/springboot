@@ -9,6 +9,7 @@ import java.text.MessageFormat;
 import java.util.Date;
 
 /**
+ * 全局拦截器
  * @author xchb
  * @version 1.0
  * @ClassName OverallIntecept
@@ -20,9 +21,9 @@ public class OverallIntercept implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String path=request.getServletPath();
+        String interceptPath="/date";
         String content="<h1 style=\"color:{0}\">{1}</h1>";
-        //System.out.println(path);
-        if("/date".equals(path)){
+        if(interceptPath.equals(path)){
             response.setCharacterEncoding("utf-8");
             response.setContentType("text/html;charset=utf-8");
             response.getWriter().println(MessageFormat.format(content,"green",new Date()));

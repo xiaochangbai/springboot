@@ -15,32 +15,33 @@ import java.util.List;
 public interface IEmployeeDao {
     /**
      * 查询所有雇员信息
-     * @return
-     * @throws SQLException
+     * @return  返回一个雇员集合
+     * @throws SQLException  SQL语句执行异常
      */
     List<Employee> findAll() throws SQLException;
 
     /**
      * 查询雇员的数量
-     * @return
-     * @throws SQLException
+     * @return  返回查询出的雇员数量
+     * @throws SQLException  SQL语句执行异常
      */
     Long findCount()throws SQLException;
 
 
     /**
      * 分页查询
-     * @param startNum  开始id
-     * @param num   每页显示的个数
-     * @return
+     * @param startNum  开始位置
+     * @param num  每页显示的个数
+     * @return  返回一个雇员集合
+     * @throws SQLException SQL语句执行异常
      */
     List<Employee> pagingQuery(Long startNum,int num) throws SQLException;
 
     /**
      * 插入单个用户信息
-     * @param employee
-     * @return
-     * @throws SQLException
+     * @param employee  要插入的雇员对象
+     * @return  返回当前插入信息的id
+     * @throws SQLException SQL语句执行异常
      */
     Long insert(Employee employee) throws SQLException;
 }

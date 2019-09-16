@@ -4,23 +4,23 @@ package cn.xdd.po;
  * @author xchb
  * @version 1.0
  * @ClassName Department
- * @description null
+ * @description 部门实体类
  * @createTime 2019年09月14日 11:52
  */
 public class Department {
     private long id;
     private String name;
     private int identifier;
-    private int minister_identifier;
+    private int ministerIdentifier;
 
     public Department() {
     }
 
-    public Department(long id, String name, int identifier, int minister_identifier) {
+    public Department(long id, String name, int identifier, int ministerIdentifier) {
         this.id = id;
         this.name = name;
         this.identifier = identifier;
-        this.minister_identifier = minister_identifier;
+        this.ministerIdentifier = ministerIdentifier;
     }
 
     public long getId() {
@@ -47,12 +47,12 @@ public class Department {
         this.identifier = identifier;
     }
 
-    public int getMinister_identifier() {
-        return minister_identifier;
+    public int getMinisterIdentifier() {
+        return this.ministerIdentifier;
     }
 
-    public void setMinister_identifier(int minister_identifier) {
-        this.minister_identifier = minister_identifier;
+    public void setMinisterIdentifier(int ministerIdentifier) {
+        this.ministerIdentifier = ministerIdentifier;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class Department {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", identifier=" + identifier +
-                ", minister_identifier=" + minister_identifier +
+                ", ministerIdentifier=" + ministerIdentifier +
                 '}';
     }
 }

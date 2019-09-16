@@ -17,6 +17,7 @@ import java.util.Properties;
 import java.util.logging.Logger;
 
 /**
+ *
  * @author xchb
  * @version 1.0
  * @ClassName DataSoureceConfig
@@ -28,8 +29,8 @@ public class DataSourceConfig {
 
     /**
      * 使用dbcp连接池配置数据源
-     * @return
-     * @throws Exception
+     * @return  数据源
+     * @throws Exception 未知
      */
     @Bean
     public DataSource dbcpDataSource() throws Exception {

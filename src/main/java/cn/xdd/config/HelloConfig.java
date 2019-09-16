@@ -2,9 +2,11 @@ package cn.xdd.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+
+
+@Configuration
 /**
  * @author xchb
  * @version 1.0
@@ -13,11 +15,11 @@ import org.springframework.context.annotation.Configuration;
  * 日志级别由低到高依次是：trace<debug<info<warn<error
  * @createTime 2019年09月07日 22:56
  */
-
-@Configuration
 public class HelloConfig {
 
-    //使用slf4j日志门面进行日志记录
+    /**
+     * 使用slf4j日志门面进行日志记录
+     */
     private Logger logger= LoggerFactory.getLogger(getClass());
 
     /**

@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @author xchb
  * @version 1.0
  * @ClassName Employee
- * @description null
+ * @description 雇员信息实体类
  * @createTime 2019年09月14日 11:41
  */
 public class Employee implements Serializable {
@@ -19,12 +19,12 @@ public class Employee implements Serializable {
     private int age;
     private String phone;
     private String position;
-    private int dep_identifier;
+    private int depIdentifier;
 
     public Employee() {
     }
 
-    public Employee(long id, String name, int identifier, String passwd, int gender, int age, String phone, String position, int dep_identifier) {
+    public Employee(long id, String name, int identifier, String passwd, int gender, int age, String phone, String position, int depIdentifier) {
         this.id = id;
         this.name = name;
         this.identifier = identifier;
@@ -33,7 +33,7 @@ public class Employee implements Serializable {
         this.age = age;
         this.phone = phone;
         this.position = position;
-        this.dep_identifier = dep_identifier;
+        this.depIdentifier = depIdentifier;
     }
 
     public long getId() {
@@ -100,12 +100,12 @@ public class Employee implements Serializable {
         this.position = position;
     }
 
-    public int getDep_identifier() {
-        return dep_identifier;
+    public int getDepIdentifier() {
+        return depIdentifier;
     }
 
-    public void setDep_identifier(int dep_identifier) {
-        this.dep_identifier = dep_identifier;
+    public void setDepIdentifier(int depIdentifier) {
+        this.depIdentifier = depIdentifier;
     }
 
     @Override
@@ -119,7 +119,9 @@ public class Employee implements Serializable {
                 ", age=" + age +
                 ", phone='" + phone + '\'' +
                 ", position='" + position + '\'' +
-                ", dep_identifier=" + dep_identifier +
+                ", depIdentifier=" + depIdentifier +
                 '}';
     }
+
+
 }

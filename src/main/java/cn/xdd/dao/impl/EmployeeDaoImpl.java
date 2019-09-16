@@ -6,6 +6,7 @@ import org.apache.commons.dbutils.handlers.ArrayHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -29,7 +30,7 @@ public class EmployeeDaoImpl implements cn.xdd.dao.IEmployeeDao {
     @Override
     public List<Employee> findAll() throws SQLException {
         QueryRunner queryRunner=new QueryRunner(dataSource);
-        List<Employee> list= queryRunner.<List<Employee>>query("select * from employee", new BeanListHandler<Employee>(Employee.class));
+        List<Employee> list= queryRunner.query("select * from employee", new BeanListHandler<>(Employee.class));
         return list;
     }
 
@@ -54,7 +55,7 @@ public class EmployeeDaoImpl implements cn.xdd.dao.IEmployeeDao {
         QueryRunner queryRunner=new QueryRunner(dataSource);
         Object object=queryRunner.insert("insert into employee set name=?," +
                 "passwd=?,gender=?,age=?,phone=?,position=?,dep_identifier=?",new ArrayHandler(),
-                name,passwd,employee.getGender(),employee.getAge(),phone,position,employee.getDep_identifier())[0];
+                name,passwd,employee.getGender(),employee.getAge(),phone,position,employee.getDepIdentifier())[0];
         return Long.valueOf(object.toString());
     }
 

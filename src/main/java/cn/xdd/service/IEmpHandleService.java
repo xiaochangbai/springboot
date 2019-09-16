@@ -16,24 +16,25 @@ import java.util.List;
 public interface IEmpHandleService {
     /**
      * 查询所有雇员信息
-     * @return
-     * @throws SQLException
+     * @return  返回查询出雇员集合
+     * @throws SQLException  SQL语句执行异常
      */
     List<Employee> findAllEmp() throws SQLException;
 
     /**
      * 雇员信息分页查询操作
      * @param pageNum  页码
-     * @param num   每页的数量
-     * @return
+     * @param num  每页的数量
+     * @return  返回包装后的信息
+     * @throws SQLException SQL语句执行异常
      */
     PagingShowUtil<Employee> empPaging(Long pageNum, int num) throws SQLException;
 
     /**
      *  插入用户
-     * @param employee
+     * @param employee  需要插入的雇员对象
      * @return  插入成功返回true，否则返回false
-     * @throws SQLException
+     * @throws SQLException  SQL语句执行异常
      */
     boolean insert(Employee employee)throws SQLException;
 }

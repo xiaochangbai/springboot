@@ -4,7 +4,7 @@ package cn.xdd.po;
  * @author xchb
  * @version 1.0
  * @ClassName Pets
- * @description null
+ * @description 宠物实体类
  * @createTime 2019年09月07日 20:34
  */
 public class Pets {
