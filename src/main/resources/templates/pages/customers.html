@@ -9,9 +9,7 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
     <title>员工列表</title>
-
-<!--    <link rel="canonical" href="https://v4ing.bootcss.com/docs/4.3/examples/dashboard/">-->
-
+      <link rel="icon" th:href="@{/static/img/favicon.ico}" />
     <!-- Bootstrap core CSS -->
      <link th:href="@{/static/css/bootstrap1.css}" rel="stylesheet">
     <link th:href="@{/static/css/bootstrap2.css}" rel="stylesheet">
@@ -80,8 +78,8 @@
                               <td th:text="${emp.phone}"></td>
                               <td th:text="${emp.position}"></td>
                               <td>
-                                  <button class="btn btn-info btn-sm">修改</button>
-                                  <button class="btn btn-danger btn-sm">删除</button>
+                                  <button class="btn btn-info btn-sm" th:onclick="'updateEmp('+${emp.id}+')'">修改</button>
+                                  <button class="btn btn-danger btn-sm" th:onclick="'deleteSingleEmp('+${emp.id}+')'">删除</button>
                               </td>
                           </tr>
                           </tbody>
@@ -148,6 +146,56 @@
           </div>
       </div>
     </div>
+  <script type="text/javascript"  th:inline="javascript">
+      /**
+       * 创建XMLHttpRequest对象
+       */
+      function createXMLHtppRequest() {
+          try {
+              return new XMLHttpRequest();
+          }catch (e) {
+             try{
+                 return new ActiveXObject("Microsoft.XMLHTTP");
+             }catch (e) {
+                 alert("您的浏览器版本过低，不支持高级服务功能【异常代码909】");
+             }
+          }
+
+      }
+
+      /**
+       * 根据id删除用户
+       * @param id
+       */
+      function deleteSingleEmp(id) {
+          if(confirm("您确认要删除当前元素吗？")){
+              //使用Ajax发送delete请求
+              var xmlHttp=createXMLHtppRequest();
+              xmlHttp.open("delete",[[@{/emp}]],true);
+                  xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+              xmlHttp.send("id="+id);
+              xmlHttp.onreadystatechange=function(e){
+                  if (xmlHttp.readyState==4 && xmlHttp.status==200){
+                      alert(xmlHttp.responseText);
+                      //刷新当前页
+                      location.reload(true);
+                  }
+              }
+
+          }else {
+              alert("删除失败【201】");
+          }
+      }
+      }
+
+      /**
+       * 根据id更新用户
+       * @param id
+       */
+      function updateEmp(id) {
+
+      }
+  </script>
   </body>
  <!-- <script th:src="@{/static/js/feather.min.js.download}"></script>-->
 </html>

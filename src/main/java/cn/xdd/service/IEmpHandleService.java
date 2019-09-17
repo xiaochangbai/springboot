@@ -37,4 +37,12 @@ public interface IEmpHandleService {
      * @throws SQLException  SQL语句执行异常
      */
     boolean insert(Employee employee)throws SQLException;
+
+    /**
+     * 根据id删除用户
+     * @param id 要删除用户的id
+     * @return 删除成功返回true ，反之返回false
+     * @throws SQLException  SQL语句执行异常
+     */
+    boolean deleteById(long id)throws SQLException;
 }

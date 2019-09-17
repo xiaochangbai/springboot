@@ -1,12 +1,17 @@
 package cn.xdd.service.impl;
 
 import cn.xdd.dao.IEmployeeDao;
+import cn.xdd.dao.impl.EmployeeDaoImpl;
 import cn.xdd.po.Employee;
+import cn.xdd.po.Person;
 import cn.xdd.util.PagingShowUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -66,6 +71,31 @@ public class EmpHandleServiceImpl implements cn.xdd.service.IEmpHandleService {
     @Override
     public boolean insert(Employee employee) throws SQLException {
         return iEmployeeDao.insert(employee)>1;
+    }
+
+
+    /**
+     * 根据id删除用户
+     * @param id 要删除用户的id
+     * @return 删除成功返回true ，反之返回false
+     * @throws SQLException  SQL语句执行异常
+     */
+    @Override
+    public boolean deleteById(long id) throws SQLException {
+        return iEmployeeDao.deleteById(id)>=1;
+    }
+
+
+    public static void main(String[] args) {
+        AnnotationConfigApplicationContext applicationContext=new AnnotationConfigApplicationContext("cn.xdd.po");
+        Person person= (Person) applicationContext.getBean("person");
+        Employee employee= (Employee) applicationContext.getBean("employee");
+        //输出
+        System.out.println(person);
+        System.out.println(employee);
+        //获取bean定义
+        BeanDefinition beanDefinition=applicationContext.getBeanDefinition("person");
+        System.out.println(beanDefinition.getBeanClassName());
     }
 
 

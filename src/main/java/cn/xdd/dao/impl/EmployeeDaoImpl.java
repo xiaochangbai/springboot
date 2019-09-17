@@ -59,5 +59,11 @@ public class EmployeeDaoImpl implements cn.xdd.dao.IEmployeeDao {
         return Long.valueOf(object.toString());
     }
 
+    @Override
+    public int deleteById(long id) throws SQLException {
+        QueryRunner queryRunner=new QueryRunner(dataSource);
+        return queryRunner.update("delete from employee where id=?",id);
+    }
+
 
 }

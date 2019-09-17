@@ -50,4 +50,10 @@ public class EmployeeDaoImplTest {
         long effect=employeeDao.insert(employee);
         System.out.println("影响："+effect);
     }
+
+    @Test
+    public void testDeleteById() throws SQLException{
+        int effectLine=employeeDao.deleteById(118);
+        System.out.println("影响行数："+effectLine);
+    }
 }

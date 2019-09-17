@@ -3,13 +3,11 @@ package cn.xdd.controller;
 import cn.xdd.po.Employee;
 import cn.xdd.service.IEmpHandleService;
 import cn.xdd.util.PagingShowUtil;
+import com.mysql.cj.jdbc.admin.MiniAdmin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
@@ -70,5 +68,32 @@ public class EmpHandleController {
         return "pages/addCustomers";
     }
 
+
+    /**
+     * 根据id删除用户信息
+     * @param request
+     * @return
+     */
+    @ResponseBody
+    @DeleteMapping("emp")
+    public String emp1(HttpServletRequest request){
+        String str=request.getParameter("id");
+        try {
+            long id=Long.valueOf(str);
+            try {
+                if(iEmpHandleService.deleteById(id)){
+                    return "删除成功";
+                }else {
+                    return "删除失败，请检查后重试";
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return "服务器异常";
+            }
+        }catch (NumberFormatException e){
+            e.printStackTrace();
+            return "数据异常";
+        }
+    }
 
 }

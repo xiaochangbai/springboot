@@ -1,23 +1,15 @@
 <!DOCTYPE html>
-<!-- saved from url=(0052)https://v4.bootcss.com/docs/4.3/examples/dashboard/# -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
     <title>添加员工</title>
-
-<!--    <link rel="canonical" href="https://v4ing.bootcss.com/docs/4.3/examples/dashboard/">-->
-
+      <link rel="icon" th:href="@{/static/img/favicon.ico}">
     <!-- Bootstrap core CSS -->
      <link th:href="@{/static/css/bootstrap1.css}" rel="stylesheet">
-
-      <!--    <link th:href="@{/static/css/bootstrap2.css}" rel="stylesheet">-->
-
-
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -46,7 +38,7 @@
     <div class="container-fluid">
       <div class="row">
         <!--侧边导航栏-->
-        <div th:replace="commons/bar :: sideNav(activeUrl='customers')"></div>
+        <div th:replace="commons/bar :: sideNav(activeUrl='')"></div>
           <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
               <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
                   <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
@@ -96,13 +88,14 @@
                           <input id="email_id" name="email" type="email" class="form-control" placeholder="jane.doe@example.com">
                       </div>
                       <br/><br/><hr/>
-                      <div style="text-align: center" th:class="${status=='添加成功' ? 'greenColor':'redColor'}">
-                        <b><h5 id="msg_id" th:if="${status!=null}">[[${status}]]</h5></b>
-                      </div>
                       <div style="text-align: center;">
                           <button type="submit" class="btn btn-primary btn-lg btn-block">添加</button>
                       </div>
                   </form>
+                  <!--提示框-->
+                  <div style="text-align: center;position: absolute;right: 30%;bottom: 45%;" th:class="${status=='添加成功' ? 'greenColor':'redColor'}">
+                      <h1 id="msg_id" th:if="${status!=null}"><b>[[${status}]]</b></h1>
+                  </div>
               </div>
         </main>
     </div>

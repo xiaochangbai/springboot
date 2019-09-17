@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>页面走丢了</title>
+		<meta charset="utf-8"/>
+		<style>
+			body{
+				height: 100%;
+				margin: 0px;
+				padding: 0px;
+				background-color: rgba(22,220,111,0.3);
+			}
+			#infoDIV{
+				text-align:center;
+				font-family: "Comic Sans MS";
+				position: fixed;
+				width: 100%;
+				bottom: 0px;
+			}
+			h1{
+				font-size: 60px;
+			}
+			h2{
+				font-size: 45px;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div id="infoDIV">
+			<a href="http://qqmlxg.club" target="view_window" style="text-decoration:none;color: black;">
+				<h1 style="color:darkred;">页面走丢了,[[${status}]]</h1>
+				<h3 th:text="${message}"></h3>
+			</a>
+			<hr/>
+			<h2 id="dateTime"></h2>
+			<h5 id="infor"></h5>
+		</div>
+	</body>
+	<script type="text/javascript">
+		window.onload=function(){
+			var agent=navigator.userAgent;
+			var infor=document.getElementById("infor");
+			var dateTime=document.getElementById("dateTime");
+			infor.innerHTML=agent.toLowerCase();
+			window.setInterval(function(){
+				dateTime.innerHTML=new Date();
+			},1);
+		}	
+	</script>
+</html>

@@ -44,4 +44,12 @@ public interface IEmployeeDao {
      * @throws SQLException SQL语句执行异常
      */
     Long insert(Employee employee) throws SQLException;
+
+    /**
+     * 根据id删除用户
+     * @param id  要删除用户的id
+     * @return   返回影响行数
+     * @throws SQLException  SQL语句执行异常
+     */
+    int deleteById(long id)throws SQLException;
 }

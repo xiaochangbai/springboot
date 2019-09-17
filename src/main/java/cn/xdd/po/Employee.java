@@ -1,5 +1,7 @@
 package cn.xdd.po;
 
+import org.springframework.stereotype.Component;
+
 import java.io.Serializable;
 
 /**
@@ -9,6 +11,7 @@ import java.io.Serializable;
  * @description 雇员信息实体类
  * @createTime 2019年09月14日 11:41
  */
+@Component
 public class Employee implements Serializable {
 
     private long id;
