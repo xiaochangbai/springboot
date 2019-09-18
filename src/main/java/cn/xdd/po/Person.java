@@ -8,9 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 
-@Component
-@ConfigurationProperties(prefix = "person")
-@PropertySource(value = {"classpath:person.properties"})
+
 /**
  * 用户实体类
  * @author xchb
@@ -27,7 +25,10 @@ import java.util.Map;
  * @createTime 2019年09月07日 20:33
  * 其他注解：
  * @Validated  //进行校验
+ * @ConfigurationProperties(prefix = "person")   配置前缀
+ * @PropertySource(value = {"classpath:person.properties"})  配置文件
  */
+@Component
 public class Person {
 
 
@@ -40,7 +41,9 @@ public class Person {
     @Value("#{1+8}")
     private Integer age;
 
-    @Value("${person.address}")
+    /**
+     * @Value("${person.address}")
+     */
     private String address;
 
     private Pets pets;

@@ -4,6 +4,7 @@ import cn.xdd.po.Employee;
 import cn.xdd.service.IEmpHandleService;
 import cn.xdd.util.PagingShowUtil;
 import com.mysql.cj.jdbc.admin.MiniAdmin;
+import jdk.management.resource.internal.inst.SocketOutputStreamRMHooks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -53,7 +54,7 @@ public class EmpHandleController {
      * @return  转发到雇员信息添加页面
      */
     @PostMapping("/emp")
-    public String emp(Employee employee, @RequestParam("email") String email, HttpServletRequest request){
+    public String empInsert(Employee employee, @RequestParam("email") String email, HttpServletRequest request){
         employee.setPosition(email);
         try {
             if(iEmpHandleService.insert(employee)){
@@ -71,15 +72,13 @@ public class EmpHandleController {
 
     /**
      * 根据id删除用户信息
-     * @param request
+     * @param id  要删除雇员的id
      * @return
      */
     @ResponseBody
-    @DeleteMapping("emp")
-    public String emp1(HttpServletRequest request){
-        String str=request.getParameter("id");
+    @DeleteMapping("/emp/{id}")
+    public String empDelete(@PathVariable("id") long id){
         try {
-            long id=Long.valueOf(str);
             try {
                 if(iEmpHandleService.deleteById(id)){
                     return "删除成功";
@@ -95,5 +94,46 @@ public class EmpHandleController {
             return "数据异常";
         }
     }
+
+
+    /**
+     * 根据id查出雇员信息（用作信息的回显），跳转到雇员信息修改页面
+     * @param id
+     * @param modelMap
+     * @return
+     */
+    @PostMapping("/toUpdateEmpPage")
+    public String toUpdateEmpPage(long id,ModelMap modelMap){
+        Employee employee=null;
+        try {
+            employee=iEmpHandleService.findById(id);
+            modelMap.put("emp_old",employee);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        //转发到雇员信息修改页面
+        return "pages/updateCustomers";
+    }
+
+    @PutMapping("/emp")
+    public String empUpdate(Employee employee,ModelMap modelMap){
+        try {
+            boolean result=iEmpHandleService.updateById(employee);
+            if(result){
+                modelMap.put("status","修改成功");
+            }else {
+                modelMap.put("status","修改失败，错误代码201");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            modelMap.put("status","修改失败，错误代码202");
+        }
+        //转发回修改页面
+        return "pages/updateCustomers";
+    }
+
+
+
+
 
 }

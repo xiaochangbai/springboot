@@ -3,10 +3,10 @@ package cn.xdd.dao.impl;
 import cn.xdd.po.Employee;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ArrayHandler;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -63,6 +63,19 @@ public class EmployeeDaoImpl implements cn.xdd.dao.IEmployeeDao {
     public int deleteById(long id) throws SQLException {
         QueryRunner queryRunner=new QueryRunner(dataSource);
         return queryRunner.update("delete from employee where id=?",id);
+    }
+
+    @Override
+    public Employee findById(long id) throws SQLException {
+        QueryRunner queryRunner=new QueryRunner(dataSource);
+        return queryRunner.query("select * from employee where id=?",new BeanHandler<>(Employee.class),id);
+    }
+
+    @Override
+    public long updateById(Employee employee) throws SQLException {
+        QueryRunner queryRunner=new QueryRunner(dataSource);
+        return queryRunner.update("update employee set name=?,passwd=?,gender=? where id=?",
+                employee.getName(),employee.getPasswd(),employee.getGender(),employee.getId());
     }
 
 

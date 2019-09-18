@@ -56,4 +56,21 @@ public class EmployeeDaoImplTest {
         int effectLine=employeeDao.deleteById(118);
         System.out.println("影响行数："+effectLine);
     }
+
+    @Test
+    public void testFindById() throws SQLException {
+        Employee employee=employeeDao.findById(1);
+        System.out.println(employee);
+    }
+
+
+    @Test
+    public void testUpdateById()throws SQLException{
+        Employee employee=new Employee();
+        employee.setId(19);
+        employee.setName("去咨询");
+        employee.setPasswd("1412431241234");
+        long effectLine=employeeDao.updateById(employee);
+        System.out.println("影响行数："+effectLine);
+    }
 }

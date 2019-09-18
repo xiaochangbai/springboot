@@ -45,4 +45,21 @@ public interface IEmpHandleService {
      * @throws SQLException  SQL语句执行异常
      */
     boolean deleteById(long id)throws SQLException;
+
+    /**
+     * 根据id查询雇员信息
+     * @param id 雇员id
+     * @return  返回查询出的雇员信息
+     * @throws SQLException  SQL语句执行异常
+     */
+    Employee findById(long id)throws SQLException;
+
+
+    /**
+     * 根据id修改雇员信息
+     * @param employee 修改后的雇员信息
+     * @return  修改成功返回true，反之返回false
+     * @throws SQLException SQL语句执行异常
+     */
+    boolean updateById(Employee employee)throws SQLException;
 }

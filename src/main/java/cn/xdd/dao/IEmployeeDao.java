@@ -52,4 +52,22 @@ public interface IEmployeeDao {
      * @throws SQLException  SQL语句执行异常
      */
     int deleteById(long id)throws SQLException;
+
+
+    /**
+     * 根据id查询雇员信息
+     * @param id 雇员id
+     * @return 返回查询出的雇员信息
+     * @throws SQLException  SQL语句执行异常
+     */
+    Employee findById(long id)throws SQLException;
+
+
+    /**
+     * 根据id修改雇员信息
+     * @param employee  修改后的雇员信息
+     * @return  返回影响行数
+     * @throws SQLException SQL语句执行异常
+     */
+    long updateById(Employee employee)throws SQLException;
 }

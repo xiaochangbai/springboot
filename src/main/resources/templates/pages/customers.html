@@ -78,12 +78,15 @@
                               <td th:text="${emp.phone}"></td>
                               <td th:text="${emp.position}"></td>
                               <td>
-                                  <button class="btn btn-info btn-sm" th:onclick="'updateEmp('+${emp.id}+')'">修改</button>
-                                  <button class="btn btn-danger btn-sm" th:onclick="'deleteSingleEmp('+${emp.id}+')'">删除</button>
+                                  <button class="btn btn-info btn-sm" th:onclick="'toUpdateEmpPage('+${emp.id}+')'">修改</button>
+                                  <button class="btn btn-danger btn-sm" th:onclick="'deleteSingleEmp(\''+@{/emp/}+${emp.id}+'\')'">删除</button>
                               </td>
                           </tr>
                           </tbody>
                       </table>
+                      <form id="toUpdateEmpPageForm" th:action="@{/}+'toUpdateEmpPage'" method="post">
+                          <input type="hidden" name="id" id="toUpdateEmpPageForm_id">
+                      </form>
 
                       <!--分页，最多显示7个选项按钮-->
                       <div style="position:absolute;right: 200px;">
@@ -171,29 +174,29 @@
           if(confirm("您确认要删除当前元素吗？")){
               //使用Ajax发送delete请求
               var xmlHttp=createXMLHtppRequest();
-              xmlHttp.open("delete",[[@{/emp}]],true);
-                  xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+              xmlHttp.open("delete",id,true);
+              xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
               xmlHttp.send("id="+id);
-              xmlHttp.onreadystatechange=function(e){
-                  if (xmlHttp.readyState==4 && xmlHttp.status==200){
+              xmlHttp.onreadystatechange=function(e) {
+                  if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
                       alert(xmlHttp.responseText);
                       //刷新当前页
                       location.reload(true);
                   }
               }
-
-          }else {
-              alert("删除失败【201】");
           }
-      }
       }
 
       /**
-       * 根据id更新用户
-       * @param id
+       * 跳转修改用户信息页面
+       * @param id 当前要修改的用户id
        */
-      function updateEmp(id) {
-
+      function toUpdateEmpPage(id) {
+            //借助表单发送post亲求
+           var form = document.getElementById("toUpdateEmpPageForm");
+           var form_input_id = document.getElementById("toUpdateEmpPageForm_id");
+           form_input_id.value = id;
+           form.submit();
       }
   </script>
   </body>

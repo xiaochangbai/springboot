@@ -52,24 +52,26 @@
               </div>
               <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                   <!--添加用户表单-->
-                  <form onsubmit="return formCheck()" action="emp" method="post">
+                  <form onsubmit="return formCheck()" th:action="@{/emp}" method="post">
+                      <input type="hidden" name="_method" value="put">
+                      <input type="hidden" name="id" th:value="${emp_old!=null ? emp_old.id : _}">
                       <div class="form-group">
                           <label for="exampleInputName2">Name</label>&nbsp;
-                          <input type="text" name="name" class="form-control" id="exampleInputName2" placeholder="userName" style="display: inline-block">
+                          <input type="text" name="name" class="form-control" id="exampleInputName2" placeholder="userName" th:value="${emp_old!=null?emp_old.name:_}" style="display: inline-block">
                       </div>
                       <div class="form-group">
                           <label for="exampleInputEmail2">Password</label>&nbsp;
-                          <input type="password" name="passwd" class="form-control" id="exampleInputEmail2" placeholder="Password" style="display: inline-block">
+                          <input type="password" name="passwd" class="form-control" th:value="${emp_old!=null?emp_old.passwd:_}" id="exampleInputEmail2" placeholder="Password" style="display: inline-block">
                       </div>
                       <br/><hr/>
                       <span>性别：</span>
                       <div style="display: inline-block">
                           <label>
-                              <input type="radio" value="1" name="gender" id="optionsRadios1" checked>
+                              <input type="radio" value="1" name="gender" id="optionsRadios1" th:checked="${emp_old!=null ? (emp_old.gender==1 ? 'checked' : _): _}">
                               男
                           </label>
                           <label>
-                              <input type="radio" value="0" name="gender" id="optionsRadios2">
+                              <input type="radio" value="0" name="gender" th:checked="${emp_old!=null?(emp_old.gender==0 ? 'checked' : _):_}" id="optionsRadios2">
                               女
                           </label>
                       </div><br/><hr/>
@@ -83,17 +85,12 @@
                               <option value="5">客户部</option>
                           </select>
                       </div><br/><hr/>
-                      <span name="email">邮箱</span>
-                      <div style="display: inline-block;">
-                          <input id="email_id" name="email" type="email" class="form-control" placeholder="jane.doe@example.com">
-                      </div>
-                      <br/><br/><hr/>
                       <div style="text-align: center;">
-                          <button type="submit" class="btn btn-primary btn-lg btn-block">添加</button>
+                          <button type="submit" class="btn btn-info btn-lg btn-block">编辑</button>
                       </div>
                   </form>
                   <!--提示框-->
-                  <div style="text-align: center;position: absolute;right: 30%;bottom: 45%;" th:class="${status=='添加成功' ? 'greenColor':'redColor'}">
+                  <div style="text-align: center;position: absolute;right: 30%;bottom: 45%;" th:class="${status=='修改成功' ? 'greenColor':'redColor'}">
                       <h1 id="msg_id" th:if="${status!=null}"><b>[[${status}]]</b></h1>
                   </div>
               </div>
@@ -104,15 +101,18 @@
       function formCheck() {
           var userName=document.getElementById("exampleInputName2").value;
           var password=document.getElementById("exampleInputEmail2").value;
-          var email=document.getElementById("email_id").value;
           if(userName!=null && userName.trim()!=""
-          && password!=null && password.trim()!=""
-          && email!=null && email.trim()!=""){
+          && password!=null && password.trim()!=""){
               return true;
           }
           alert("请正确填写信息");
           return false;
       }
+
+      /**
+       * 点击屏幕，清空提示内容
+       * @param ev
+       */
       window.onclick=function (ev) {
           document.getElementById("msg_id").innerText="";
       }

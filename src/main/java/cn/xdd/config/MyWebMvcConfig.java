@@ -21,6 +21,21 @@ import org.springframework.web.servlet.config.annotation.*;
 public class MyWebMvcConfig implements WebMvcConfigurer {
 
     /**
+     * 添加视图控制器
+     * @param registry
+     */
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        //请求/1路径时映射到index.html页面
+        registry.addViewController("/1").setViewName("/index");
+        registry.addViewController("/").setViewName("pages/login");
+        registry.addViewController("/login.html").setViewName("pages/login");
+        registry.addViewController("/main").setViewName("pages/dashboard.html");
+        registry.addViewController("/addCustomer").setViewName("pages/addCustomers.html");
+    }
+
+
+    /**
      *  添加全局拦截器
      * @param registry
      */
@@ -35,21 +50,6 @@ public class MyWebMvcConfig implements WebMvcConfigurer {
         addInterceptor.excludePathPatterns("/");
         //拦截所有资源
         addInterceptor.addPathPatterns("/**");
-    }
-
-
-    /**
-     * 添加视图控制器
-     * @param registry
-     */
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        //请求/1路径时映射到index.html页面
-        registry.addViewController("/1").setViewName("/index");
-        registry.addViewController("/").setViewName("pages/login");
-        registry.addViewController("/login.html").setViewName("pages/login");
-        registry.addViewController("/main").setViewName("pages/dashboard.html");
-        registry.addViewController("/addCustomer").setViewName("pages/addCustomers.html");
     }
 
 

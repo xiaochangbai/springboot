@@ -85,6 +85,26 @@ public class EmpHandleServiceImpl implements cn.xdd.service.IEmpHandleService {
         return iEmployeeDao.deleteById(id)>=1;
     }
 
+    /**
+     * 根据id查询雇员信息
+     * @param id 雇员id
+     * @return  返回查询出的雇员信息
+     * @throws SQLException  SQL语句执行异常
+     */
+    @Override
+    public Employee findById(long id) throws SQLException {
+        return iEmployeeDao.findById(id);
+    }
+
+    @Override
+    public boolean updateById(Employee employee) throws SQLException {
+        if(employee.getName()==null || employee.getPasswd()==null ||
+                employee.getGender()<0 || employee.getId()<0){
+            return false;
+        }
+        return iEmployeeDao.updateById(employee)>0;
+    }
+
 
     public static void main(String[] args) {
         AnnotationConfigApplicationContext applicationContext=new AnnotationConfigApplicationContext("cn.xdd.po");

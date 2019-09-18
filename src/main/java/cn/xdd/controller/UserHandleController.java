@@ -1,6 +1,7 @@
 package cn.xdd.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.thymeleaf.util.StringUtils;
 
@@ -55,5 +56,16 @@ public class UserHandleController {
         }
         //转发到登陆页面
         return "pages/login.html";
+    }
+
+    /**
+     * 推出登陆
+     * @param session
+     * @return
+     */
+    @GetMapping("/signOut")
+    public String signOut(HttpSession session){
+        session.removeAttribute("loginUserEmail");
+        return "redirect:/pages/login.html";
     }
 }
